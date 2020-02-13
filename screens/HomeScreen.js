@@ -31,12 +31,7 @@ export default function HomeScreen() {
         </View>
         
     
-    <Text style={[ styles.redBig ]}>ACHIEVE GREATNESS MOBILE APP :)</Text>
-    <Text style={[ styles.greenBig ]}>GROUP STATUS UPDATES</Text>
-    <Text style={[ styles.greenBig ]}>GOALS</Text>
-    <Text style={[ styles.greenBig ]}>LIFE STATUS</Text>
-    <Text style={[ styles.greenBig ]}>ACCOUNTABILITY PARTNER</Text>
-    <Text style={[ styles.greenBig ]}>JOURNALING</Text>
+    <Text style={[ styles.redBig ]}>Welcome Back :)</Text>
 
    
 

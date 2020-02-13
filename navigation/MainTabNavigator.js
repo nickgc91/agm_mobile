@@ -7,6 +7,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import GoalsScreen from '../screens/GoalsScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import JournalScreen from '../screens/JournalScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -21,7 +22,7 @@ const HomeStack = createStackNavigator(
 );
 
 HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+  tabBarLabel: 'HOME',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -52,6 +53,23 @@ GoalsStack.navigationOptions = {
 
 GoalsStack.path = '';
 
+const JournalStack = createStackNavigator(
+  {
+    Journal: JournalScreen,
+  },
+  config
+);
+
+JournalStack.navigationOptions = {
+  tabBarLabel: 'JOURNAL',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+  ),
+};
+
+JournalStack.path = '';
+
+
 const SettingsStack = createStackNavigator(
   {
     Settings: SettingsScreen,
@@ -71,6 +89,7 @@ SettingsStack.path = '';
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   GoalsStack,
+  JournalStack,
   SettingsStack,
 });
 
