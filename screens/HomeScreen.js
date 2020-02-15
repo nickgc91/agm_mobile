@@ -10,9 +10,8 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  View,
   FlatList,
-  TouchableOpacity,
-  View
 } from "react-native";
 
 const HomeScreen = () => {
@@ -20,7 +19,7 @@ const HomeScreen = () => {
 
   useEffect(() => {
     getStatusUpdate();
-  }, []);
+  });
 
   function getStatusUpdate() {
     API.provideMastermindUpdates()
@@ -38,6 +37,8 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
+      {status.actionUpdates === undefined ? <Text>Loading Data</Text> :
+    (
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
@@ -52,32 +53,42 @@ const HomeScreen = () => {
             style={styles.welcomeImage}
           />
         </View>
+        <View style={[styles.pinkBig]}>
+        <Text style={[styles.pinkBig]}>Welcome back **name**! {`\n`} Here are the latest group updates...</Text>
+        </View>
 
-        <Text style={[styles.redBig]}>Welcome back :). Here are the latest group updates:</Text>
-        <View>
-
-        <Text style={[styles.blueBig]}>Latest Action Taken</Text>
+        <View style={[styles.redBig]}>
+        <Text style={[styles.whiteTitle]}>Latest Action Taken</Text>
           <Text style={[styles.whiteFont]}>{status.actionUpdates[0][1]} took this latest action: {status.actionUpdates[0][0]}</Text>
           <Text style={[styles.whiteFont]}>{status.actionUpdates[1][1]} took this latest action: {status.actionUpdates[1][0]}</Text>
           <Text style={[styles.whiteFont]}>{status.actionUpdates[2][1]} took this latest action: {status.actionUpdates[2][0]}</Text>
-        <Text style={[styles.blueBig]}>Latest Goals</Text>
+          <Text style={[styles.whiteFont]}>{status.actionUpdates[3][1]} took this latest action: {status.actionUpdates[3][0]}</Text>
+          {/* <Text style={[styles.whiteFont]}>{status.actionUpdates[4][1]} took this latest action: {status.actionUpdates[4][0]}</Text>
+          <Text style={[styles.whiteFont]}>{status.actionUpdates[5][1]} took this latest action: {status.actionUpdates[5][0]}</Text> */}
+          </View>
+
+          <View style={[styles.redBig]}>
+        <Text style={[styles.whiteTitle]}>Latest Goals</Text>
           <Text style={[styles.whiteFont]}>{status.goalUpdates[0][1]} is working on this goal: {status.goalUpdates[0][0]}</Text>
           <Text style={[styles.whiteFont]}>{status.goalUpdates[1][1]} is working on this goal: {status.goalUpdates[1][0]}</Text>
           <Text style={[styles.whiteFont]}>{status.goalUpdates[2][1]} is working on this goal: {status.goalUpdates[2][0]}</Text>
+          </View>
 
-          <Text style={[styles.blueBig]}>Latest Journaling</Text>
-          <Text style={[styles.whiteFont]}>{status.journalingUpdates[0][1]} wrote a journal entry: {status.journalingUpdates[0][0]}</Text>
-          <Text style={[styles.whiteFont]}>{status.journalingUpdates[1][1]} wrote a journal entry: {status.journalingUpdates[1][0]}</Text>
-          <Text style={[styles.whiteFont]}>{status.journalingUpdates[2][1]} wrote a journal entry: {status.journalingUpdates[2][0]}</Text>
+          <View style={[styles.redBig]}>
+          <Text style={[styles.whiteTitle]}>Latest Journaling</Text>
+          <Text style={[styles.whiteFont]}>{status.journalingUpdates[0][1]} wrote a journal entry called {status.journalingUpdates[0][0]}</Text>
+          <Text style={[styles.whiteFont]}>{status.journalingUpdates[1][1]} wrote a journal entry called {status.journalingUpdates[1][0]}</Text>
+          <Text style={[styles.whiteFont]}>{status.journalingUpdates[2][1]} wrote a journal entry called {status.journalingUpdates[2][0]}</Text>
+          </View>
 
-          <Text style={[styles.blueBig]}>Latest Life Status Updates</Text>
-          <Text style={[styles.whiteFont]}>{status.lifeStatusUpdates[0][1]} updated their life status: {status.lifeStatusUpdates[0][0]}</Text>
-          <Text style={[styles.whiteFont]}>{status.lifeStatusUpdates[1][1]} updated their life status: {status.lifeStatusUpdates[1][0]}</Text>
-          <Text style={[styles.whiteFont]}>{status.lifeStatusUpdates[2][1]} updated their life status: {status.lifeStatusUpdates[2][0]}</Text>
-       
-        </View>
-        
-      </ScrollView>
+          <View style={[styles.redBig]}>
+          <Text style={[styles.whiteTitle]}>Latest Life Status Updates</Text>
+          <Text style={[styles.whiteFont]}>{status.lifeStatusUpdates[0][1]} {status.lifeStatusUpdates[0][0]} updated their life status</Text>
+          <Text style={[styles.whiteFont]}>{status.lifeStatusUpdates[1][1]} {status.lifeStatusUpdates[1][0]} updated their life status</Text>
+          <Text style={[styles.whiteFont]}>{status.lifeStatusUpdates[2][1]} {status.lifeStatusUpdates[2][0]} updated their life status</Text>
+               </View>
+
+      </ScrollView> )}
     </View>
   );
 };
@@ -134,19 +145,31 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "white",
   },
-  blueBig: {
+  whiteTitle: {
     textAlign: "center",
     margin: 20,
     fontSize: 35,
     color: "white",
-    backgroundColor: "blue"
+    borderRadius: 30,
+    textDecorationLine: 'underline',
   },
   redBig: {
     textAlign: "center",
     margin: 20,
     fontSize: 35,
     color: "red",
-    backgroundColor: "yellow"
+    backgroundColor: "navy",
+    borderRadius: 30,
+
+  },
+  pinkBig: {
+    textAlign: "center",
+    margin: 20,
+    fontSize: 35,
+    color: "navy",
+    backgroundColor: "pink",
+    borderRadius: 30,
+
   },
   greenBig: {
     textAlign: "center",
