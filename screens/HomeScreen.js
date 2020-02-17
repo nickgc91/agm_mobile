@@ -19,7 +19,7 @@ const HomeScreen = () => {
 
   useEffect(() => {
     getStatusUpdate();
-  });
+  }, []);
 
   function getStatusUpdate() {
     API.provideMastermindUpdates()

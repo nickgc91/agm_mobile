@@ -1,17 +1,24 @@
 import React from "react";
-import { Button } from 'react-native-elements';
+import { Button } from "react-native-elements";
 
-import { ScrollView, FlatList, StyleSheet, View, Text, YellowBox } from "react-native";
-
+import {
+  ScrollView,
+  FlatList,
+  StyleSheet,
+  View,
+  Text,
+  YellowBox,
+  TextInput,
+} from "react-native";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 35,
-    backgroundColor: "blue", 
+    backgroundColor: "blue"
   },
   titleBox: {
-    borderRadius: 40,
+    borderRadius: 40
   },
   theButton: {
     borderRadius: 50
@@ -21,15 +28,15 @@ const styles = StyleSheet.create({
     padding: 20,
     fontSize: 35,
     color: "red",
-    backgroundColor: "yellow",
-  },
+    backgroundColor: "yellow"
+  }
 });
 
 class JournalScreen extends React.Component {
   state = {
-    dataSource: []
+    dataSource: [],
+    text: ''
   };
-
 
   componentDidMount() {
     return fetch("https://agm-backend.herokuapp.com/users")
@@ -45,14 +52,32 @@ class JournalScreen extends React.Component {
   }
 
   render() {
-
-
-    if (!this.state.dataSource) 
-      return <div>Loading data</div>;
+    if (!this.state.dataSource) return <div>Loading data</div>;
 
     return (
+
       <View style={styles.container}>
-        <Text style={styles.redBig}>Journaling</Text>    
+        <ScrollView>
+      <View style={{flex: 1,
+        flexDirection: 'column', justifyContent: 'space-between'}}>
+        
+        <View>
+        <Text style={styles.redBig}>Journaling</Text>
+        </View>
+        <View>
+        <TextInput
+          style={styles.textArea}
+          height= '100%'
+          backgroundColor='white'
+          underlineColorAndroid="transparent"
+          placeholder="Type something"
+          placeholderTextColor="grey"
+          numberOfLines={20}
+          multiline={true}
+        />
+        </View>
+        </View>
+        </ScrollView>
       </View>
     );
   }
