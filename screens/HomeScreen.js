@@ -53,8 +53,9 @@ const HomeScreen = () => {
             style={styles.welcomeImage}
           />
         </View>
-        <View style={[styles.pinkBig]}>
-        <Text style={[styles.pinkBig]}>Welcome back **name**! {`\n`} Here are the latest group updates...</Text>
+        <View style={[styles.pinkBig]}> 
+        {/* remember to change name below */}
+        <Text style={[styles.pinkBig]}>Welcome back Nick! {`\n`} Here are the latest group updates...</Text>
         </View>
 
         <View style={[styles.redBig]}>

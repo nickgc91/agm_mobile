@@ -5,7 +5,7 @@ import API from '../components/API'
 import { connect } from 'react-redux';
 
 import { bindActionCreators } from 'redux';
-import { getGoalData } from '../Reducers/GoalActions';
+import { setGoalData } from '../Reducers/GoalActions';
 
 
 import {
@@ -44,42 +44,47 @@ const styles = StyleSheet.create({
   }
 });
 
-const GoalsScreen = ({ userData, getGoalData }) => {
+const GoalsScreen = ({ userData, setGoalData }) => {
 
 
-  // useEffect(() => {
-  //   getData();
-  // }, []);
-
-  // function getData() {
-  //   API.getUserData()
-  //     .then(response => {
-  //       if (response.error) {
-  //         throw Error(response.error);
-  //       } else {
-  //         setUserData(response);
-  //       }
-  //     })
-  //     .catch(error => {
-  //       alert(error);
-  //     });
-  // }
+  function getData() {
+    API.getUserData()
+      .then(response => {
+        if (response.error) {
+          throw Error(response.error);
+        } else {
+          debugger
+          setGoalData(response)
+        }
+      })
+      .catch(error => {
+        alert(error);
+      });
+  }
 
   return (
     <View style={styles.container}>
-      {/* {!userData.username ? (
+      {!userData.username ? (
+        <View>
         <Text>Loading data</Text>
-      ) :  */}
+        <Button 
+          title="Add Goal"
+          onPress={() => getData()}
+          style={styles.buttonStyle}
+          />
+          </View>
+      ) : (
       
         <View >
           {/* <Text>FOUND THE DATA</Text> */}
-          <Button 
-          title="Add Goal"
-          onPress={() => getGoalData()}
-          style={styles.buttonStyle}
-          />
           
-          <Text>{userData[0]}</Text>
+          
+          <Text style={styles.redBig}>{userData.username}</Text>
+          {/* <Text style={styles.redBig}>{userData[1]}</Text> */}
+          </View> )}
+   
+   </View>)
+ 
 
 
           {/* <Text>{userData.username}</Text> */}
@@ -100,22 +105,18 @@ const GoalsScreen = ({ userData, getGoalData }) => {
           </View>
           </ScrollView> */}
 
-        </View>
-   
-    </View>
-  );
-};
+        }
 
 
 const mapStateToProps = (state) => ({
   userData: state.goals
 })
 
-const mapDispatchToProps = dispatch => (
-  bindActionCreators({
-    getGoalData,
-  }, dispatch)
-);
+const mapDispatchToProps = dispatch => ({
+  setGoalData: data => {
+    dispatch({ type: "SET_GOAL_DATA", payload: data });
+  }
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(GoalsScreen);
 
