@@ -1,5 +1,5 @@
-export const getGoalData = () => (
+export const setGoalData = () => (
     {
-      type: 'GET_GOAL_DATA',
+      type: 'SET_GOAL_DATA',
     }
   );

@@ -9,8 +9,7 @@ import { createStore } from 'redux';
 import GoalReducer from './Reducers/GoalReducer';
 import AppNavigator from './navigation/AppNavigator';
 
-const store = createStore(GoalReducer);
-
+const store = createStore(GoalReducer)
 
 function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
