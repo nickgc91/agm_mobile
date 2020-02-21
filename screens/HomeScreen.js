@@ -55,7 +55,7 @@ const HomeScreen = () => {
         </View>
         <View style={[styles.pinkBig]}> 
         {/* remember to change name below */}
-        <Text style={[styles.pinkBig]}>Welcome back Nick! {`\n`} Here are the latest group updates...</Text>
+        <Text style={[styles.pinkBig]}>Welcome back Imran! {`\n`} Here are the latest group updates...</Text>
         </View>
 
         <View style={[styles.redBig]}>
@@ -152,13 +152,10 @@ const styles = StyleSheet.create({
     fontSize: 35,
     color: "white",
     borderRadius: 30,
-    textDecorationLine: 'underline',
   },
   redBig: {
     textAlign: "center",
     margin: 20,
-    fontSize: 35,
-    color: "red",
     backgroundColor: "navy",
     borderRadius: 30,
 
@@ -167,98 +164,17 @@ const styles = StyleSheet.create({
     textAlign: "center",
     margin: 20,
     fontSize: 35,
-    color: "navy",
-    backgroundColor: "pink",
-    borderRadius: 30,
-
-  },
-  greenBig: {
-    textAlign: "center",
-    margin: 20,
-    fontSize: 35,
     color: "white",
-    backgroundColor: "green"
-  },
-  developmentModeText: {
-    marginBottom: 20,
-    color: "rgba(0,0,0,0.4)",
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: "center"
+    borderRadius: 30,
   },
   contentContainer: {
-    paddingTop: 30
+    paddingTop: 50
   },
   welcomeContainer: {
     alignItems: "center",
     marginTop: 10,
     marginBottom: 20
-  },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: "contain",
-    marginTop: 3,
-    marginLeft: -10
-  },
-  getStartedContainer: {
-    alignItems: "center",
-    marginHorizontal: 50
-  },
-  homeScreenFilename: {
-    marginVertical: 7
-  },
-  codeHighlightText: {
-    color: "rgba(96,100,109, 0.8)"
-  },
-  codeHighlightContainer: {
-    backgroundColor: "rgba(0,0,0,0.05)",
-    borderRadius: 3,
-    paddingHorizontal: 4
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: "rgba(96,100,109, 1)",
-    lineHeight: 24,
-    textAlign: "center"
-  },
-  tabBarInfoContainer: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: "black",
-        shadowOffset: { width: 0, height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3
-      },
-      android: {
-        elevation: 20
-      }
-    }),
-    alignItems: "center",
-    backgroundColor: "#fbfbfb",
-    paddingVertical: 20
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: "rgba(96,100,109, 1)",
-    textAlign: "center"
-  },
-  navigationFilename: {
-    marginTop: 5
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: "center"
-  },
-  helpLink: {
-    paddingVertical: 15
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: "#2e78b7"
-  }
-});
+  }})
+
+  
+
