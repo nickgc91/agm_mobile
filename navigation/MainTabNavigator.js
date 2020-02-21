@@ -35,7 +35,7 @@ HomeStack.navigationOptions = {
   ),
 };
 
-HomeStack.path = '';
+HomeStack.path = 'GOALS';
 
 const GoalsStack = createStackNavigator(
   {
@@ -51,7 +51,7 @@ GoalsStack.navigationOptions = {
   ),
 };
 
-GoalsStack.path = '';
+GoalsStack.path = 'JOURNAL';
 
 const JournalStack = createStackNavigator(
   {
@@ -67,7 +67,7 @@ JournalStack.navigationOptions = {
   ),
 };
 
-JournalStack.path = '';
+JournalStack.path = 'SETTINGS';
 
 
 const SettingsStack = createStackNavigator(
