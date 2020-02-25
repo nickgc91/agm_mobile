@@ -63,13 +63,17 @@ const styles = StyleSheet.create({
 });
 
 const GoalsScreen = ({ userData, setGoalData }, props) => {
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   function getData() {
     API.getUserData()
       .then(response => {
         if (response.error) {
           throw Error(response.error);
         } else {
-          debugger;
           setGoalData(response);
         }
       })
@@ -80,25 +84,31 @@ const GoalsScreen = ({ userData, setGoalData }, props) => {
 
   const [showGoalForm, setShowGoalForm] = React.useState(false);
 
-  function navigateToGoalsScreen() {
+  function saveNewGoal(newGoalData) {
     setShowGoalForm(false)
+    API.createNewGoal(newGoalData)
+      .then(response => {
+        if (response.error) {
+          throw Error(response.error);
+        } else {
+          alert('that worked')
+        }
+      })
+      .catch(error => {
+        alert(error);
+      }).then(getData())
   }
 
 
   return !userData.username ? (
     <View style={styles.container}>
       <Text>Loading data</Text>
-      <Button
-        title="Grab Data"
-        onPress={() => getData()}
-        style={styles.buttonStyle}
-      />
     </View>
   ) 
   : 
   showGoalForm ? 
   
-   <NewGoalForm navigation={navigateToGoalsScreen} />
+   <NewGoalForm saveNewGoal={saveNewGoal} />
   
   :  
   <View style={styles.container}>
@@ -136,23 +146,6 @@ const GoalsScreen = ({ userData, setGoalData }, props) => {
   
 };
 
-// <ScrollView style={styles.somePadding}>
-
-/* <View style={styles.redBig}>
-            <Text style={styles.redBig}>Goal: {userData.goals[0].goal[1]}</Text>
-            <Text style={styles.redBig}>Action Item: {userData.goals[0].action[0].action}</Text>
-            <Text style={styles.redBig}>Action Item: {userData.goals[0].action[1].action}</Text>
-            <Text style={styles.redBig}>Action Item: {userData.goals[0].action[2].action}</Text>
-          </View>
-
-          <View style={styles.redBig}>
-            <Text style={styles.redBig}>Goal: {userData.goals[1].goal[1]}</Text>
-            <Text style={styles.redBig}>Action Item: {userData.goals[1].action[0].action}</Text>
-            <Text style={styles.redBig}>Action Item: {userData.goals[1].action[1].action}</Text>
-            <Text style={styles.redBig}>Action Item: {userData.goals[1].action[2].action}</Text>
-          </View>
-          </ScrollView>
-        </View>) */
 
 const mapStateToProps = state => ({
   userData: state.goals

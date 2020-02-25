@@ -2,7 +2,7 @@ import * as WebBrowser from "expo-web-browser";
 import React from "react";
 import API from "../components/API";
 import { connect } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import {
   Image,

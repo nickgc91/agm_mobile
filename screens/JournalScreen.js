@@ -13,9 +13,9 @@ import {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 35,
-    backgroundColor: "blue"
+    flex:1,
+  paddingTop: (Platform.OS) === 'ios' ? 20 : 0,
+  margin:20,
   },
   titleBox: {
     borderRadius: 40
@@ -29,7 +29,16 @@ const styles = StyleSheet.create({
     fontSize: 35,
     color: "red",
     backgroundColor: "yellow"
-  }
+  },
+  inputStyle: {
+    height: 50,
+    borderWidth: 2,
+    borderColor: '#9E9E9E',
+    borderRadius: 20 ,
+    backgroundColor : "#FFFFFF",
+    height: 150,
+    padding: 20
+  },
 });
 
 class JournalScreen extends React.Component {
@@ -56,29 +65,20 @@ class JournalScreen extends React.Component {
 
     return (
 
-      <View style={styles.container}>
-        <ScrollView>
+      <ScrollView style={styles.container}>
       <View style={{flex: 1,
-        flexDirection: 'column', justifyContent: 'space-between'}}>
+        flexDirection: 'column', justifyContent: 'center'}}>
         
         <View>
         <Text style={styles.redBig}>Journaling</Text>
         </View>
         <View>
         <TextInput
-          style={styles.textArea}
-          height= '100%'
-          backgroundColor='white'
-          underlineColorAndroid="transparent"
-          placeholder="Type something"
-          placeholderTextColor="grey"
-          numberOfLines={20}
-          multiline={true}
+          style={styles.inputStyle}
         />
         </View>
         </View>
-        </ScrollView>
-      </View>
+      </ScrollView>
     );
   }
 }
