@@ -3,7 +3,8 @@ import { Button } from "react-native-elements";
 import { useEffect } from "react";
 import API from "../components/API";
 import { connect } from "react-redux";
-import NewGoalForm from "../components/NewGoalForm"
+import NewGoalForm from "../components/NewGoalForm";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 import { bindActionCreators } from "redux";
 import { setGoalData } from "../Reducers/GoalActions";
@@ -47,7 +48,14 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
     fontSize: 25,
-    margin: 20
+    margin: 20,
+  },
+  goalsContentComplete: {
+    color: "green",
+    textAlign: "center",
+    fontSize: 25,
+    margin: 20,
+    textDecorationLine: 'line-through'
   },
   greenBig: {
     textAlign: "center",
@@ -63,7 +71,6 @@ const styles = StyleSheet.create({
 });
 
 const GoalsScreen = ({ userData, setGoalData }, props) => {
-
   useEffect(() => {
     getData();
   }, []);
@@ -85,33 +92,44 @@ const GoalsScreen = ({ userData, setGoalData }, props) => {
   const [showGoalForm, setShowGoalForm] = React.useState(false);
 
   function saveNewGoal(newGoalData) {
-    setShowGoalForm(false)
+    setShowGoalForm(false);
     API.createNewGoal(newGoalData)
       .then(response => {
         if (response.error) {
           throw Error(response.error);
         } else {
-          alert('that worked')
+          alert("that worked");
         }
       })
       .catch(error => {
         alert(error);
-      }).then(getData())
+      })
+      .then(getData());
   }
 
+  function completedAction(goalID) {
+    API.updateItemActionIsCompleted(goalID)
+    .then(response => {
+      if (response.error) {
+        throw Error(response.error);
+      } else {
+        alert("completed");
+      }
+    })
+    .catch(error => {
+      alert(error);
+    })
+    .then(getData());
+  }
 
   return !userData.username ? (
     <View style={styles.container}>
       <Text>Loading data</Text>
     </View>
-  ) 
-  : 
-  showGoalForm ? 
-  
-   <NewGoalForm saveNewGoal={saveNewGoal} />
-  
-  :  
-  <View style={styles.container}>
+  ) : showGoalForm ? (
+    <NewGoalForm saveNewGoal={saveNewGoal} />
+  ) : (
+    <View style={styles.container}>
       <ScrollView style={styles.someMargin}>
         <Text style={styles.greenBig}>Welcome back {userData.username}</Text>
         <View style={styles.contentContainer}>
@@ -131,9 +149,26 @@ const GoalsScreen = ({ userData, setGoalData }, props) => {
                   </Text>
                   {element.action.map((actionItem, index) => {
                     return (
-                      <Text key={index} style={styles.goalsContent}>
-                        Action Item: {actionItem.action}
+                      actionItem.isComplete ? 
+                      <Text key={index} style={styles.goalsContentComplete}>
+                          Action Item: {actionItem.action}
                       </Text>
+                      :
+                      <View
+                        key={index}
+                        style={{ alignItems: "center", marginBottom: 20 }}
+                      >
+                        <Text style={styles.goalsContent}>
+                          Action Item: {actionItem.action}
+                        </Text>
+                        <Button
+                          icon={<Icon name="check" size={15} color="white" />}
+                          type="outline"
+                          color="white"
+                          style={{ width: 75, backgroundColor: "green" }}
+                          onPress={() => completedAction({id: actionItem.id})}
+                        />
+                      </View>
                     );
                   })}
                 </View>
@@ -143,9 +178,8 @@ const GoalsScreen = ({ userData, setGoalData }, props) => {
         </View>
       </ScrollView>
     </View>
-  
+  );
 };
-
 
 const mapStateToProps = state => ({
   userData: state.goals

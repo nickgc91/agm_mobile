@@ -1,5 +1,5 @@
 
-const baseUrl= 'https://agm-backend.herokuapp.com'
+const baseUrl= 'http://localhost:3000/'
 const signinUrl = baseUrl + '/signin'
 const createAccountUrl = baseUrl + '/newAccount'
 const validateUrl = baseUrl + '/validate'
