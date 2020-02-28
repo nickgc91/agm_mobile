@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import API from "../components/API";
 import { connect } from "react-redux";
 import NewGoalForm from "../components/NewGoalForm";
-import Icon from "react-native-vector-icons/FontAwesome";
+import Icon from "react-native-vector-icons/AntDesign";
 
 import { bindActionCreators } from "redux";
 import { setGoalData } from "../Reducers/GoalActions";
@@ -42,7 +42,8 @@ const styles = StyleSheet.create({
   },
   navyBackground: {
     borderRadius: 20,
-    backgroundColor: "navy"
+    backgroundColor: "navy",
+    alignItems: "center",
   },
   goalsContent: {
     color: "white",
@@ -107,13 +108,28 @@ const GoalsScreen = ({ userData, setGoalData }, props) => {
       .then(getData());
   }
 
-  function completedAction(goalID) {
-    API.updateItemActionIsCompleted(goalID)
+  function completedAction(actionID) {
+    API.updateItemActionIsCompleted(actionID)
     .then(response => {
       if (response.error) {
         throw Error(response.error);
       } else {
-        alert("completed");
+        alert("action completed");
+      }
+    })
+    .catch(error => {
+      alert(error);
+    })
+    .then(getData());
+  }
+
+  function deleteGoal(goalID) {
+    API.deleteGoal(goalID)
+    .then(response => {
+      if (response.error) {
+        throw Error(response.error);
+      } else {
+        alert("goal deleted");
       }
     })
     .catch(error => {
@@ -144,6 +160,7 @@ const GoalsScreen = ({ userData, setGoalData }, props) => {
             return (
               <View key={index} style={styles.blueBig}>
                 <View style={styles.navyBackground}>
+                  <View style={{ marginBottom: 30 }}>
                   <Text style={styles.goalsContent}>
                     Goal: {element.goal[1]}
                   </Text>
@@ -165,12 +182,21 @@ const GoalsScreen = ({ userData, setGoalData }, props) => {
                           icon={<Icon name="check" size={15} color="white" />}
                           type="outline"
                           color="white"
-                          style={{ width: 75, backgroundColor: "green" }}
+                          style={{ borderRadius: 30, width: 75, backgroundColor: "green" }}
                           onPress={() => completedAction({id: actionItem.id})}
                         />
                       </View>
                     );
                   })}
+                  </View>
+                  <Text style={{ color: 'white', marginBottom: 5}}>Delete Goal</Text>
+                  <Button
+                          icon={<Icon name="closecircle" size={15} color="white" />}
+                          type="outline"
+                          color="white"
+                          style={{ borderRadius: 30, width: 75, backgroundColor: "red", marginBottom: 20 }}
+                          onPress={() => deleteGoal({ goalId: element.goal[0] })}
+                        />
                 </View>
               </View>
             );
