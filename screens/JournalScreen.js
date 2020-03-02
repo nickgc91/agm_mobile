@@ -8,14 +8,28 @@ import {
   View,
   Text,
   YellowBox,
-  TextInput,
+  TextInput
 } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
-  paddingTop: (Platform.OS) === 'ios' ? 20 : 0,
-  margin:20,
+    flex: 1,
+    paddingTop: Platform.OS === "ios" ? 20 : 0,
+    backgroundColor: "#02075d",
+    textAlign: "center",
+    alignContent: "center"
+  },
+  whiteTitle: {
+    textAlign: "center",
+    margin: 20,
+    fontSize: 35,
+    color: "white",
+    borderRadius: 30
+  },
+  greenBackground: {
+    borderRadius: 20,
+    backgroundColor: "#013220",
+    alignItems: "center",
   },
   titleBox: {
     borderRadius: 40
@@ -25,26 +39,25 @@ const styles = StyleSheet.create({
   },
   redBig: {
     borderRadius: 40,
+    textAlign: "center",
     padding: 20,
     fontSize: 35,
     color: "red",
     backgroundColor: "yellow"
   },
   inputStyle: {
-    height: 50,
-    borderWidth: 2,
-    borderColor: '#9E9E9E',
-    borderRadius: 20 ,
-    backgroundColor : "#FFFFFF",
-    height: 150,
-    padding: 20
-  },
+    height: 100,
+    textAlignVertical: 'top',
+    borderWidth: 1,
+    borderColor: "#9E9E9E",
+    backgroundColor: "#FFFFFF",
+  }
 });
 
 class JournalScreen extends React.Component {
   state = {
     dataSource: [],
-    text: ''
+    text: ""
   };
 
   componentDidMount() {
@@ -64,21 +77,21 @@ class JournalScreen extends React.Component {
     if (!this.state.dataSource) return <div>Loading data</div>;
 
     return (
-
-      <ScrollView style={styles.container}>
-      <View style={{flex: 1,
-        flexDirection: 'column', justifyContent: 'center'}}>
-        
-        <View>
-        <Text style={styles.redBig}>Journaling</Text>
-        </View>
-        <View>
-        <TextInput
-          style={styles.inputStyle}
-        />
-        </View>
+      <View style={styles.container}>
+      <ScrollView >
+        <View style={{ padding: 20 }}>
+          <View style={styles.greenBackground}>
+          <Text style={styles.whiteTitle}>Journaling</Text>
+          </View>
+          <View style={{ marginTop: 20 }}>
+            <TextInput 
+            style={styles.inputStyle} 
+            
+            />
+          </View>
         </View>
       </ScrollView>
+      </View>
     );
   }
 }

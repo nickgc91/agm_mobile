@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 25,
-    backgroundColor: "green",
+    backgroundColor: "#02075d",
     textAlign: "center",
     alignContent: "center"
   },
@@ -40,10 +40,18 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 40
   },
-  navyBackground: {
+  whiteTitle: {
+    textAlign: "center",
+    marginBottom: 50,
+    fontSize: 30,
+    color: "white",
+    borderRadius: 30
+  },
+    blackBackground: {
     borderRadius: 20,
-    backgroundColor: "navy",
+    backgroundColor: "black",
     alignItems: "center",
+    marginBottom: 20,
   },
   goalsContent: {
     color: "white",
@@ -147,7 +155,9 @@ const GoalsScreen = ({ userData, setGoalData }, props) => {
   ) : (
     <View style={styles.container}>
       <ScrollView style={styles.someMargin}>
-        <Text style={styles.greenBig}>Welcome back {userData.username}</Text>
+        <View >
+        <Text style={styles.whiteTitle}>Welcome back {userData.username}</Text>
+        </View>
         <View style={styles.contentContainer}>
           <Button
             style={styles.buttonStyle}
@@ -159,7 +169,7 @@ const GoalsScreen = ({ userData, setGoalData }, props) => {
           {userData.goals.map((element, index) => {
             return (
               <View key={index} style={styles.blueBig}>
-                <View style={styles.navyBackground}>
+                <View style={styles.greenBackground}>
                   <View style={{ marginBottom: 30 }}>
                   <Text style={styles.goalsContent}>
                     Goal: {element.goal[1]}
