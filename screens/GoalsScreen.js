@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   buttonStyle: {
     textAlign: "center",
     marginBottom: 20,
-    width: 100
+    width: 150
   },
   blueBig: {
     textAlign: "center",
@@ -199,6 +199,7 @@ const GoalsScreen = ({ userData, setGoalData }, props) => {
                     );
                   })}
                   </View>
+                  <View style={{ alignItems: "center" }}>
                   <Text style={{ color: 'white', marginBottom: 5}}>Delete Goal</Text>
                   <Button
                           icon={<Icon name="closecircle" size={15} color="white" />}
@@ -207,6 +208,7 @@ const GoalsScreen = ({ userData, setGoalData }, props) => {
                           style={{ borderRadius: 30, width: 75, backgroundColor: "red", marginBottom: 20 }}
                           onPress={() => deleteGoal({ goalId: element.goal[0] })}
                         />
+                  </View>
                 </View>
               </View>
             );
