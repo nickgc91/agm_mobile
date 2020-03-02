@@ -46,12 +46,17 @@ const styles = StyleSheet.create({
     backgroundColor: "yellow"
   },
   inputStyle: {
-    height: 100,
+    height: '90%',
     textAlignVertical: 'top',
     borderWidth: 1,
     borderColor: "#9E9E9E",
     backgroundColor: "#FFFFFF",
-  }
+  },
+  buttonStyle: {
+    textAlign: "center",
+    marginBottom: 20,
+    width: 150
+  },
 });
 
 class JournalScreen extends React.Component {
@@ -80,14 +85,19 @@ class JournalScreen extends React.Component {
       <View style={styles.container}>
       <ScrollView >
         <View style={{ padding: 20 }}>
-          <View style={styles.greenBackground}>
+          <View >
           <Text style={styles.whiteTitle}>Journaling</Text>
           </View>
           <View style={{ marginTop: 20 }}>
             <TextInput 
             style={styles.inputStyle} 
-            
             />
+            <View style={{ marginTop: 20, alignItems: "center" }}>
+            <Button
+            style={styles.buttonStyle}
+            title='Submit Entry'
+              />
+           </View>
           </View>
         </View>
       </ScrollView>
