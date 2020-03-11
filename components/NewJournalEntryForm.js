@@ -99,7 +99,7 @@ const NewGoalForm = props => {
       <TextInput
         multiline={true}
         style={styles.inputStyle}
-        placeholder="What's on your mind?"
+        placeholder="What's on your mind..."
         name="journalEntry"
         onChangeText={journalEntry => handleChange(2, journalEntry)}
       />
