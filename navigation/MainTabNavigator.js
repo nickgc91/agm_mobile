@@ -35,7 +35,7 @@ HomeStack.navigationOptions = {
   ),
 };
 
-HomeStack.path = 'GOALS';
+HomeStack.path = 'HOME';
 
 const GoalsStack = createStackNavigator(
   {
@@ -51,7 +51,7 @@ GoalsStack.navigationOptions = {
   ),
 };
 
-GoalsStack.path = 'JOURNAL';
+GoalsStack.path = 'GOALS';
 
 const JournalStack = createStackNavigator(
   {
@@ -67,7 +67,7 @@ JournalStack.navigationOptions = {
   ),
 };
 
-JournalStack.path = 'SETTINGS';
+JournalStack.path = 'JOURNAL';
 
 
 const SettingsStack = createStackNavigator(
@@ -84,7 +84,7 @@ SettingsStack.navigationOptions = {
   ),
 };
 
-SettingsStack.path = '';
+SettingsStack.path = 'SETTINGS';
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,

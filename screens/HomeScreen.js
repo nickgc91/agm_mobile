@@ -118,10 +118,7 @@ HomeScreen.navigationOptions = {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#02075d"
-  },
+ 
   whiteFont: {
     textAlign: "center",
     margin: 20,
@@ -133,20 +130,20 @@ const styles = StyleSheet.create({
     margin: 20,
     fontSize: 35,
     color: "white",
-    borderRadius: 30
+    borderRadius: 20
   },
   redBig: {
     textAlign: "center",
     margin: 20,
     backgroundColor: "#013220",
-    borderRadius: 30
+    borderRadius: 20
   },
   pinkBig: {
     textAlign: "center",
     margin: 20,
     fontSize: 35,
     color: "white",
-    borderRadius: 30
+    borderRadius: 20
   },
   contentContainer: {
     paddingTop: 50
