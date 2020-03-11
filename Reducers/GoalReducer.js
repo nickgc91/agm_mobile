@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-const INITIAL_STATE = ['John', 'Stacy']
+const INITIAL_STATE = []
 
 const GoalReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -11,6 +11,6 @@ const GoalReducer = (state = INITIAL_STATE, action) => {
 }}
 
 export default combineReducers({
-  goals: GoalReducer,
+  data: GoalReducer,
 })
 

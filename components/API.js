@@ -63,7 +63,9 @@ const deleteGoal = goal => post(deleteGoalUrl, goal)
 const updateItemActionIsCompleted = itemId => patch(updateItemActionIsCompletedUrl, itemId)
 
 //journaling
-const createNewJournalEntry = journalEntry => post(createNewJournalEntryUrl, journalEntry)
+const createNewJournalEntry = journalEntry => {
+    debugger
+    post(createNewJournalEntryUrl, journalEntry) }
 const deleteJournalEntry = journal => post(deleteJournalEntryUrl, journal)
 
 const updateDate = date => patch(updateDateUrl, date)

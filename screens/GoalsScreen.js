@@ -19,6 +19,7 @@ import {
   Alert
 } from "react-native";
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     marginBottom: 50,
     fontSize: 30,
     color: "white",
-    borderRadius: 30
+    borderRadius: 20
   },
     blackBackground: {
     borderRadius: 20,
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
   },
   greenBig: {
     textAlign: "center",
-    borderRadius: 30,
+    borderRadius: 20,
     marginBottom: 20,
     padding: 10,
     fontSize: 30,
@@ -192,7 +193,7 @@ const GoalsScreen = ({ userData, setGoalData }, props) => {
                           icon={<Icon name="check" size={15} color="white" />}
                           type="outline"
                           color="white"
-                          style={{ borderRadius: 30, width: 75, backgroundColor: "green" }}
+                          style={{ borderRadius: 20, width: 75, backgroundColor: "green" }}
                           onPress={() => completedAction({id: actionItem.id})}
                         />
                       </View>
@@ -205,7 +206,7 @@ const GoalsScreen = ({ userData, setGoalData }, props) => {
                           icon={<Icon name="closecircle" size={15} color="white" />}
                           type="outline"
                           color="white"
-                          style={{ borderRadius: 30, width: 75, backgroundColor: "red", marginBottom: 20 }}
+                          style={{ borderRadius: 20, width: 75, backgroundColor: "red", marginBottom: 20 }}
                           onPress={() => deleteGoal({ goalId: element.goal[0] })}
                         />
                   </View>
@@ -220,7 +221,7 @@ const GoalsScreen = ({ userData, setGoalData }, props) => {
 };
 
 const mapStateToProps = state => ({
-  userData: state.goals
+  userData: state.data
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -230,3 +231,4 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GoalsScreen);
+
