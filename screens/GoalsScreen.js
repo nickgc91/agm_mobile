@@ -11,12 +11,9 @@ import { setGoalData } from "../Reducers/GoalActions";
 
 import {
   ScrollView,
-  FlatList,
   StyleSheet,
   View,
   Text,
-  YellowBox,
-  Alert
 } from "react-native";
 
 
@@ -39,7 +36,10 @@ const styles = StyleSheet.create({
   },
   blueBig: {
     textAlign: "center",
-    marginBottom: 40
+    marginBottom: 40,
+    backgroundColor: '#013220',
+    borderRadius: 20,
+
   },
   whiteTitle: {
     textAlign: "center",
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   goalsContentComplete: {
-    color: "green",
+    color: "black",
     textAlign: "center",
     fontSize: 25,
     margin: 20,

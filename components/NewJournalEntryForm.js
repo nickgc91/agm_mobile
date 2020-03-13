@@ -76,13 +76,15 @@ const styles = StyleSheet.create({
 });
 
 const NewGoalForm = props => {
-  const [journalTitle, setJournalTitle] = useState("");
-  const [journalEntry, setJournalEntry] = useState("");
+  const [title, setJournalTitle] = useState("");
+  const [text, setJournalEntry] = useState("");
 
   const handleChange = (num, text) => {
     if (num === 1) {
+      console.log(text)
       setJournalTitle(text);
     } else if (num === 2) {
+      console.log(text)
       setJournalEntry(text);
     }
   };
@@ -92,14 +94,16 @@ const NewGoalForm = props => {
 
       <TextInput
         style={styles.titleInput}
+        value={title}
         placeholder="Title"
         name="journalTitle"
         onChangeText={journalTitle => handleChange(1, journalTitle)}
       />
       <TextInput
+        value={text}
         multiline={true}
         style={styles.inputStyle}
-        placeholder="What's on your mind..."
+        placeholder="What's on your mind... "
         name="journalEntry"
         onChangeText={journalEntry => handleChange(2, journalEntry)}
       />
@@ -109,7 +113,11 @@ const NewGoalForm = props => {
           style={styles.buttonStyle}
           color="#ff5c5c"
           title="Add Goal"
-          onPress={() => props.saveNewJournalEntry({ title: journalTitle, text: journalEntry })}
+          onPress={() => { 
+            props.saveNewJournalEntry({title, text})
+            setJournalTitle('');
+            setJournalEntry('');
+          }}
         />
       </View>
     </ScrollView>
