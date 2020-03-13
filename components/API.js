@@ -1,5 +1,5 @@
 
-const baseUrl= 'https://agm-backend.herokuapp.com/'
+const baseUrl= 'http://localhost:3000/'
 const signinUrl = baseUrl + '/signin'
 const createAccountUrl = baseUrl + '/newAccount'
 const validateUrl = baseUrl + '/validate'
@@ -63,9 +63,8 @@ const deleteGoal = goal => post(deleteGoalUrl, goal)
 const updateItemActionIsCompleted = itemId => patch(updateItemActionIsCompletedUrl, itemId)
 
 //journaling
-const createNewJournalEntry = journalEntry => {
-    debugger
-    post(createNewJournalEntryUrl, journalEntry) }
+const createNewJournalEntry = journalEntry => post(createNewJournalEntryUrl, journalEntry) 
+
 const deleteJournalEntry = journal => post(deleteJournalEntryUrl, journal)
 
 const updateDate = date => patch(updateDateUrl, date)

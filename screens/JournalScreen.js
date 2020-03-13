@@ -3,6 +3,7 @@ import { Button, ButtonGroup } from "react-native-elements";
 import API from '../components/API'
 import { useEffect, useState } from "react";
 import NewJournalEntryForm from '../components/NewJournalEntryForm'
+import Icon from "react-native-vector-icons/AntDesign";
 
 import { connect } from "react-redux";
 
@@ -52,9 +53,11 @@ const styles = StyleSheet.create({
     backgroundColor: "yellow",
   },
   entriesListStyle: {
-    textAlign: 'center',
-    padding: 10,
-    color: 'white'
+    color: "white",
+    textAlign: "center",
+    fontSize: 25,
+    margin: 20,
+    textDecorationLine: 'underline',
   },
   inputStyle: {
     borderRadius: 20,
@@ -68,7 +71,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 20,
     width: 150
-  }
+  },
+  
 });
 
 const JournalScreen = ({ userData, setGoalData }, props) => {
@@ -88,13 +92,27 @@ const JournalScreen = ({ userData, setGoalData }, props) => {
 
 
   function saveNewJournalEntry(journalEntry) {
-    console.log(journalEntry)
     API.createNewJournalEntry(journalEntry)
       .then(response => {
         if (response.error) {
           throw Error(response.error);
         } else {
-          alert("that worked");
+          return response
+        }
+      })
+      .catch(error => {
+        alert(error);
+      })
+      .then(getData());
+  }
+
+  function deleteJournalItem(journalEntry) {
+    API.deleteJournalEntry(journalEntry)
+      .then(response => {
+        if (response.error) {
+          throw Error(response.error);
+        } else {
+          return response
         }
       })
       .catch(error => {
@@ -144,7 +162,20 @@ const JournalScreen = ({ userData, setGoalData }, props) => {
             <View style={styles.container}>
               {userData.journalings.map((element, index) => {
             return (
-              <TextInput key={index} style={styles.entriesListStyle}>{element.journal_title}</TextInput>
+              <View key={element.journal_id} style={{ alignItems: 'center' }}>
+              <TextInput style={styles.entriesListStyle}>{element.journal_title}</TextInput>
+              <Button
+                          icon={<Icon name="closecircle" size={15} color="white" />}
+                          type="outline"
+                          color="white"
+                          style={{ borderRadius: 20, width: 75, backgroundColor: "red", marginBottom: 20 }} 
+                          onPress={() => {
+                            console.log(element.journal_id)
+                            deleteJournalItem({journalId: element.journal_id})}
+
+                          }
+                          />
+              </View>
             )})}
             </View> )}
           </View>

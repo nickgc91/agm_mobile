@@ -118,7 +118,12 @@ HomeScreen.navigationOptions = {
 };
 
 const styles = StyleSheet.create({
- 
+  container: {
+    flex: 1,
+    backgroundColor: "#02075d",
+    textAlign: "center",
+    alignContent: "center"
+  },
   whiteFont: {
     textAlign: "center",
     margin: 20,
